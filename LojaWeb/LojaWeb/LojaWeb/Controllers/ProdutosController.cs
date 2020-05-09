@@ -1,6 +1,8 @@
 ﻿using log4net;
+using LojaWeb.DAO;
 using LojaWeb.Entidades;
 using LojaWeb.Infra;
+using NHibernate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +15,11 @@ namespace LojaWeb.Controllers
     {
         //
         // GET: /Produtos/
+        private ProdutosDAO dao;
+        public ProdutosController(ProdutosDAO dao)
+        {
+            this.dao = dao;
+        }
 
         public ActionResult Index()
         {
@@ -28,6 +35,11 @@ namespace LojaWeb.Controllers
 
         public ActionResult Adiciona(Produto produto)
         {
+            //ISession session = NHibernateHelper.AbreSession();
+            //ProdutosDAO produtoDAO = new ProdutosDAO(session);
+            dao.Adiciona(produto);
+            //dao.Close();
+
             return RedirectToAction("Index");
         }
 
@@ -37,8 +49,13 @@ namespace LojaWeb.Controllers
         }
 
         public ActionResult Visualiza(int id)
-        {
-            Produto p = new Produto();
+        {            
+            //ISession session = NHibernateHelper.AbreSession();
+            //dao produtoDAO = new dao(session);
+            Produto p = dao.BuscaPorId(id);
+            //session.Close();
+
+
             return View(p);
         }
 

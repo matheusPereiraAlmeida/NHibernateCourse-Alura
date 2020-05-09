@@ -1,4 +1,5 @@
 ﻿using LojaWeb.Entidades;
+using NHibernate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +9,18 @@ namespace LojaWeb.DAO
 {
     public class VendasDAO
     {
+        private ISession session;
+
+        public VendasDAO(ISession session)
+        {
+            this.session = session;
+        }
+
         public void Adiciona(Venda venda)
         {
-
+            //ITransaction transation = session.BeginTransaction();
+            session.Save(venda);
+            //transation.Commit();
         }
 
         public IList<Venda> Lista()

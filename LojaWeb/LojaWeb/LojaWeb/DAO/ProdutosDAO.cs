@@ -18,22 +18,28 @@ namespace LojaWeb.DAO
 
         public void Adiciona(Produto produto)
         {
-
+            //ITransaction transation = session.BeginTransaction();
+            session.Save(produto);
+            //transation.Commit();
         }
 
         public void Remove(Produto produto)
         {
-
+            //ITransaction transation = session.BeginTransaction();
+            session.Delete(produto);
+            //transation.Commit();
         }
 
         public void Atualiza(Produto produto)
         {
-
+            //ITransaction transation = session.BeginTransaction();
+            session.Merge(produto);
+            //transation.Commit();
         }
 
         public Produto BuscaPorId(int id)
         {
-            return null;
+            return session.Get<Produto>(id);
         }
 
         public IList<Produto> Lista()

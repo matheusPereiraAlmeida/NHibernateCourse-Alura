@@ -1,4 +1,7 @@
-﻿using LojaWeb.Entidades;
+﻿using LojaWeb.DAO;
+using LojaWeb.Entidades;
+using LojaWeb.Infra;
+using NHibernate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +14,11 @@ namespace LojaWeb.Controllers
     {
         //
         // GET: /Usuarios/
-
+        private UsuariosDAO dao;
+        public UsuariosController(UsuariosDAO dao)
+        {
+            this.dao = dao;
+        }
         public ActionResult Index()
         {
             IList<Usuario> usuarios = new List<Usuario>();
@@ -25,6 +32,11 @@ namespace LojaWeb.Controllers
 
         public ActionResult Adiciona(Usuario usuario)
         {
+            //ISession session = NHibernateHelper.AbreSession();
+            //UsuariosDAO produtoDAO = new UsuariosDAO(session);
+            dao.Adiciona(usuario);
+            //session.Close();
+
             return RedirectToAction("Index");
         }
 
@@ -35,7 +47,11 @@ namespace LojaWeb.Controllers
 
         public ActionResult Visualiza(int id)
         {
-            Usuario usuario = new Usuario();
+            //ISession session = NHibernateHelper.AbreSession();
+            //UsuariosDAO produtoDAO = new UsuariosDAO(session);
+            Usuario usuario = dao.BuscaPorId(id);
+            //session.Close();
+
             return View(usuario);
         }
 

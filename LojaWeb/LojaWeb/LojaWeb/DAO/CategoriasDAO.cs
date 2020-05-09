@@ -19,22 +19,28 @@ namespace LojaWeb.DAO
 
         public void Adiciona(Categoria categoria)
         {
-
+            //ITransaction transation = session.BeginTransaction();
+            session.Save(categoria);
+            //transation.Commit();
         }
 
         public void Remove(Categoria categoria)
         {
-
+            //ITransaction transation = session.BeginTransaction();
+            session.Delete(categoria);
+            //transation.Commit();
         }
 
         public void Atualiza(Categoria categoria)
         {
-
+            //ITransaction transation = session.BeginTransaction();
+            session.Merge(categoria);
+            //transation.Commit();
         }
 
         public Categoria BuscaPorId(int id)
         {
-            return null;
+            return session.Get<Categoria>(id);
         }
 
         public IList<Categoria> Lista()
