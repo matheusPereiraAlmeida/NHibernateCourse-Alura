@@ -1,6 +1,4 @@
 ﻿using loja.Entidades;
-using loja.Info;
-using MySqlX.XDevAPI;
 using NHibernate;
 using System;
 using System.Collections.Generic;
@@ -10,24 +8,24 @@ using System.Threading.Tasks;
 
 namespace loja.dao
 {
-    public class UsuarioDAO
+    public class CategoriaDAO
     {
         private ISession session;
 
-        public UsuarioDAO(ISession session)
+        public CategoriaDAO(ISession session)
         {
             this.session = session;
         }
-        public void Adiciona(Usuario usuario)
+        public void Adiciona(Categoria usuario)
         {
             ITransaction transation = session.BeginTransaction();
             session.Save(usuario);
             transation.Commit();
         }
 
-        public Usuario BuscaPorId(int id)
+        public Categoria BuscaPorId(int id)
         {
-            return session.Get<Usuario>(id);
+            return session.Get<Categoria>(id);
         }
     }
 }

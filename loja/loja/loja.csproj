@@ -107,7 +107,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="dao\UsuarioDao.cs" />
+    <Compile Include="dao\CategoriaDAO.cs" />
+    <Compile Include="dao\ProdutoDAO.cs" />
+    <Compile Include="dao\UsuarioDAO.cs" />
+    <Compile Include="Entidades\Categoria.cs" />
+    <Compile Include="Entidades\Produto.cs" />
     <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="Info\NHibernateHelper.cs" />
     <Compile Include="Program.cs" />
@@ -124,6 +128,8 @@
     <Content Include="hibernate.cfg.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Mapeamentos\Produto.hbm.xml" />
+    <EmbeddedResource Include="Mapeamentos\Categoria.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
